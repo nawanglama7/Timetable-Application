@@ -7,6 +7,8 @@ import subjectRoutes from './routes/subjects.js';
 import facultyRoutes from './routes/faculty.js';
 import facultySubjectsRoutes from './routes/fs.js';
 import timetableAssignmentsRoutes from './routes/ttAssignments.js';
+import getTimetableRoutes from './routes/get_timetable.js';
+
 
 
 
@@ -23,6 +25,7 @@ app.use('/api/subjects', subjectRoutes);
 app.use('/api/faculty', facultyRoutes);
 app.use('/api/facultySubjects', facultySubjectsRoutes);
 app.use('/api/timetableAssignments', timetableAssignmentsRoutes);
+app.use('/api/timetable-view', getTimetableRoutes);
 
 app.get('/', (req, res) => {
   res.send('Timetable Management Backend Running');

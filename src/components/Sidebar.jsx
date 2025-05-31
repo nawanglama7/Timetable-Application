@@ -77,32 +77,45 @@ const Sidebar = ({ pinned, setPinned }) => {
         >
           <i className="bi bi-calendar3 me-2"></i>
           {pinned && "Faculty Timetable"}
-
-          
         </Link>
+
+        <Link
+          to="/admin/timetable-viewer"
+          style={{
+            ...linkStyle,
+            ...(location.pathname === "/admin/timetable-viewer" ? activeLinkStyle : {}),
+          }}
+          title="Timetable Viewer"
+        >
+          <i className="bi bi-table me-2"></i>
+          {pinned && "Timetable Viewer"}
+        </Link>
+
         <Link to="/admin/schools" style={linkStyle}>
-  {pinned && "Manage Schools"}
-</Link>
-<Link to="/admin/classes" style={linkStyle}>
-  {pinned && "Manage Classes"}
-</Link>
+          {pinned && "Manage Schools"}
+        </Link>
+
+        <Link to="/admin/classes" style={linkStyle}>
+          {pinned && "Manage Classes"}
+        </Link>
+
+        <Link to="/admin/programs" style={linkStyle}>
+          {pinned && "Manage Programs"}
+        </Link>
+
+        <Link to="/admin/subjects" style={linkStyle}>
+          {pinned && "Manage Subjects"}
+        </Link>
+
+        <Link to="/admin/faculty" style={linkStyle}>
+          {pinned && "Faculty Management"}
+        </Link>
+
+        <Link to="/admin/assign-subjects" style={linkStyle}>
+          {pinned && "Assign Subjects"}
+        </Link>
       </nav>
-      <Link to="/admin/programs" style={linkStyle}>
-  {pinned && "Manage Programs"}
-</Link>
-<Link to="/admin/subjects" style={linkStyle}>
-  {pinned && "Manage Subjects"}
-</Link>
-
-<Link to="/admin/faculty" style={linkStyle}>
-    {pinned && "Faculty Management"}
-  </Link>
-
-  <Link to="/admin/assign-subjects" style={linkStyle}>
-  {pinned && "Assign Subjects"}
-</Link>
     </div>
-    
   );
 };
 

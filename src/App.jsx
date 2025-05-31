@@ -11,7 +11,7 @@ import ProgramPage from "./components/ProgramPage";
 import SubjectPage from "./components/SubjectPage";
 import FacultyPage from "./components/FacultyPage";
 import AssignSubjects from './components/AssignSubjects';
-
+import TimetableViewer from './components/TimetableViewer';
 function App() {
   const [pinned, setPinned] = useState(true);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
@@ -53,6 +53,7 @@ function App() {
             <Route path="/admin/subjects" element={<SubjectPage />} />
             <Route path="/admin/faculty" element={<FacultyPage />} />
             <Route path="/admin/assign-subjects" element={<AssignSubjects />} />
+            <Route path="/admin/timetable-viewer" element={<TimetableViewer />} />
           </Routes>
         </div>
       </div>
