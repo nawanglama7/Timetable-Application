@@ -1,37 +1,44 @@
-// TimetableTable.jsx
 import React from 'react';
 
 const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
-const dayMap = { Mon: 'Monday', Tue: 'Tuesday', Wed: 'Wednesday', Thu: 'Thursday', Fri: 'Friday' };
-const slots = ['Slot 1', 'Slot 2', 'Slot 3', 'Slot 4', 'Slot 5', 'Slot 6', 'Slot 7', 'Slot 8', 'Slot 9'];
+
+const dayMap = {
+  Mon: 'Monday',
+  Tue: 'Tuesday',
+  Wed: 'Wednesday',
+  Thu: 'Thursday',
+  Fri: 'Friday'
+};
+
+const slotMap = {
+  1: '9:30–10:15',
+  2: '10:15–11:00',
+  3: '11:15–12:00',
+  4: '12:00–12:45',
+  5: '1:45–2:30',
+  6: '2:30–3:15',
+  7: '3:15–4:00'
+};
+
+const slots = Object.keys(slotMap); // ['1', '2', ..., '7']
 
 const TimetableTable = ({ data }) => {
   const cellMap = {};
   data.forEach(entry => {
-    const dayFull = dayMap[entry.day];              // Map "Mon" → "Monday"
-    const slotLabel = `Slot ${entry.slot}`;         // Map "9" → "Slot 9"
-    if (dayFull && slots.includes(slotLabel)) {
-      const key = `${dayFull}-${slotLabel}`;
-      let details = '';
-if (entry.faculty_name && entry.program_name) {
-  details = ` (${entry.faculty_name}+${entry.program_name})`;
-} else if (entry.faculty_name) {
-  details = ` (${entry.faculty_name})`;
-} else if (entry.program_name) {
-  details = ` (${entry.program_name})`;
-}
-
-cellMap[key] = `${entry.subject_name}${details}`;
-
-    }
+    const day = dayMap[entry.day] || entry.day; // Map short day to full name
+    const slot = entry.slot.toString(); // Ensure slot is string
+    const key = `${day}-${slot}`;
+    cellMap[key] = `${entry.subject_name} (${entry.faculty_name})`;
   });
 
   return (
     <table className="table table-bordered text-center">
-      <thead>
+      <thead className="thead-light">
         <tr>
-          <th>Day / Slot</th>
-          {slots.map(slot => <th key={slot}>{slot}</th>)}
+          <th>Day / Time</th>
+          {slots.map(slot => (
+            <th key={slot}>{slotMap[slot]}</th>
+          ))}
         </tr>
       </thead>
       <tbody>
@@ -48,6 +55,5 @@ cellMap[key] = `${entry.subject_name}${details}`;
     </table>
   );
 };
-
 
 export default TimetableTable;
